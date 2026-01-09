@@ -1,0 +1,12 @@
+# Nextflow
+.nextflow/
+.nextflow.log
+work/
+
+# Raw NGS data
+*.fastq
+*.fastq.gz
+data/
+
+# Results
+results/
