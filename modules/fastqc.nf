@@ -1,16 +1,15 @@
 process FASTQC {
-    tag "$sample_id"
-    publishDir "${params.outdir}/${folder_name}", mode: 'copy'
+    publishDir "${params.output}/1_fastqc_raw", mode: 'copy'
 
     input:
-    tuple val(sample_id), path(reads)
-    val folder_name 
+    path fastq
 
     output:
-    path "*.{html,zip}", emit: fastqc_results
+    path "*_fastqc.html"
+    path "*_fastqc.zip"
 
     script:
     """
-    fastqc -q ${reads}
+    ${params.fastqc_bin} ${fastq}
     """
 }
