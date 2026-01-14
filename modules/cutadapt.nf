@@ -1,14 +1,16 @@
 process CUTADAPT {
-    publishDir "${params.output}/trimmed", mode: 'copy'
+    publishDir "${params.outdir}/trimmed", mode: 'copy'
 
     input:
-    path reads
+   
+    tuple val(sample_id), path(reads)
 
     output:
-    path "trimmed.fastq.gz"
+   
+    path "trimmed_*.fastq.gz", emit: trimmed_reads
 
     script:
     """
-    ${params.cutadapt_bin} -o trimmed.fastq.gz ${reads}
+    ${params.cutadapt_bin} -o trimmed_1.fastq.gz -p trimmed_2.fastq.gz ${reads[0]} ${reads[1]}
     """
 }
