@@ -4,19 +4,19 @@ This repository provides a complete automated workflow for the processing of Nex
 
 # 2. Pipeline Workflow
 
-Input FASTQ files (data/*.fastq)
-         ↓
+Input FASTQ files (data/*.fastq.gz)
+        ↓
     FASTQC_RAW
-         ↓
-   Quality Reports (HTML)
-         ↓
-     CUTADAPT
-         ↓
-   Trimmed FASTQ files
-         ↓
+        ↓
+Quality Reports (HTML/ZIP)
+        ↓
+    CUTADAPT
+        ↓
+ Trimmed FASTQ files
+        ↓
   FASTQC_TRIMMED
-         ↓
-   Final Validation Reports
+        ↓
+Final Quality Reports
 
 # 3. Initial Quality Assessment (FastQC)
 The first phase of the pipeline involves a comprehensive analysis of the raw sequencing files using FastQC. This step is crucial for establishing a baseline understanding of the data's health before any modifications are made.
