@@ -8,7 +8,11 @@ include { VARIANT_CALLING } from './modules/variant_calling.nf'
 
 workflow QC_PIPELINE {
     
+    // 1. Input reads channel
     read_pairs_ch = channel.fromFilePairs("${params.input}/SRR390728_{1,2}.fastq", size: 2, checkIfExists: true)
+    
+    // Create genome channel
+    genome_ch = Channel.fromPath(params.genome).collect()
     
     // 2. Initial QC on raw reads
     FASTQC_RAW(read_pairs_ch, '1_fastqc_raw')
@@ -20,7 +24,7 @@ workflow QC_PIPELINE {
     FASTQC_TRIMMED(CUTADAPT.out.trimmed_reads, '3_fastqc_trimmed')
 
     // 5. Alignment (Mapping)
-    BWA_ALIGN(CUTADAPT.out.trimmed_reads, params.genome)
+    BWA_ALIGN(CUTADAPT.out.trimmed_reads, genome_ch)
 
     // 6. File Conversion
     SAM_TO_BAM(BWA_ALIGN.out.sam)
@@ -29,5 +33,5 @@ workflow QC_PIPELINE {
     SORT_BAM(SAM_TO_BAM.out.bam)
 
     // 8. Variant calling 
-    VARIANT_CALLING(SORT_BAM.out.sorted_bam, params.genome)
+    VARIANT_CALLING(SORT_BAM.out.sorted_bam, genome_ch)
 }
