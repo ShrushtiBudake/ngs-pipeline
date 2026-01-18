@@ -12,8 +12,8 @@ workflow QC_PIPELINE {
     read_pairs_ch = channel.fromFilePairs("${params.input}/SRR390728_{1,2}.fastq", size: 2, checkIfExists: true)
     
     // Create genome channel
-    genome_ch = Channel.fromPath(params.genome).collect()
-    
+    genome_ch = Channel.fromPath("${params.genome}*").collect()    
+
     // 2. Initial QC on raw reads
     FASTQC_RAW(read_pairs_ch, '1_fastqc_raw')
     

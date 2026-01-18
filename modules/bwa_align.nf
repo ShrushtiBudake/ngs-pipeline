@@ -12,7 +12,6 @@ process BWA_ALIGN {
 
     script:
     """
-    ${params.bwa_bin} mem ${genome} ${reads[0]} ${reads[1]} > ${sample_id}.sam
-    
+    ${params.bwa_bin} mem chr22.fa ${reads[0]} ${reads[1]} > ${sample_id}.sam
     """
 }
