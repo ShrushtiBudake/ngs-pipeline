@@ -5,25 +5,25 @@ A streamlined Nextflow-based solution for identifying genetic variants from pair
 ## Pipeline Workflow
 
 ```text
-Input FASTQ files (data/*_{1,2}.fastq.gz)
+Input FASTQ files 
         ↓
-   FASTQC_RAW (Quality Control)
+   FASTQC_RAW 
         ↓
-    CUTADAPT (Adapter Trimming)
+    CUTADAPT 
         ↓
-  FASTQC_TRIM (Post-trim QC)
+  FASTQC_TRIM 
         ↓
-   BWA_ALIGN (Read Alignment)
+   BWA_ALIGN
         ↓
-  SAM_TO_BAM (Format Conversion)
+  SAM_TO_BAM 
         ↓
-   SORT_BAM (BAM Sorting)
+   SORT_BAM 
         ↓
-VARIANT_CALLING (Call Variants)
+VARIANT_CALLING 
         ↓
-FILTER_VARIANTS (Filter Quality Variants)
+FILTER_VARIANTS 
         ↓
-Final VCF files (results/8_filtered/)
+Final VCF files 
 ```
 
 ## Overview
