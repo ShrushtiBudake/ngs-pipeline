@@ -1,0 +1,26 @@
+name: bnf
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  # Pipeline manager
+  - nextflow=24.10.0
+  
+  # Quality control
+  - fastqc=0.12.1
+  
+  # Adapter trimming
+  - cutadapt=4.4
+  
+  # Alignment
+  - bwa=0.7.17
+  
+  # SAM/BAM processing
+  - samtools=1.17
+  
+  # Variant calling
+  - bcftools=1.17
+  
+  # Python
+  - python=3.9
